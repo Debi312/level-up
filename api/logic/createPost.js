@@ -6,11 +6,11 @@ const createPost = (userId, workoutId, image, description, time, repetitions, we
     validate.id(userId, "userId")
     validate.id(workoutId, "workoutId")
 
-    validate.url(image, "image")
-    validate.text(description, "description", 150)
-    if (repetitions || repetitions === 0) validate.number(repetitions, "repetitions");
-    if (weight || weight === 0) validate.number(weight, "weight");
-    if (time || time === 0) validate.time(time, "time")
+    //validate.url(image, "image")
+    //validate.text(description, "description", 150)
+    //if (repetitions || repetitions === 0) validate.number(repetitions, "repetitions");
+    //if (weight || weight === 0) validate.number(weight, "weight");
+   // if (time || time === 0) validate.time(time, "time")
 
     return User.findById(userId).lean()
         .catch(error => { throw new SystemError(error.message) })

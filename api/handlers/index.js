@@ -12,6 +12,7 @@ import createCommentHandler from "./createCommentHandler.js";
 import updateResultHandler from "./updateResultHandler.js";
 import getResultHandler from "./getResultHandler.js";
 import getAllCommentsHandler from "./getAllCommentsHandler.js";
+import uploadFileHandler from "./uploadFileHandler.js";
 
 
 const routeHandler = {
@@ -31,8 +32,10 @@ const routeHandler = {
 
     deleteResultHandler,
     updateResultHandler,
-    getResultHandler
+    getResultHandler,
 
+    uploadFileHandler,
+    
 }
 
 export default routeHandler

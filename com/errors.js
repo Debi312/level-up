@@ -48,7 +48,7 @@ class NotFoundError extends Error {
     }
 }
 
-//juntamos el archivo errors de app y api 
+
 export {
     ContentError,
     MatchError,

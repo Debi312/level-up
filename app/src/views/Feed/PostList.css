@@ -28,5 +28,8 @@
     @apply flex  w-full justify-start p-[0.3rem_1rem] font-bold;
   }
 
+  .no-post-message{
+    @apply flex justify-center
+  }
   
 }

@@ -2,7 +2,7 @@
 
 @layer components {
   .CreatePostForm {
-    @apply fixed w-[350px] h-[270px] bottom-[100px] left-1/2 transform -translate-x-1/2 bg-[#cac4c4] p-[10px] shadow-lg rounded-md ;
+    @apply fixed w-[350px] h-[270px] bottom-[100px] left-1/2 transform -translate-x-1/2 bg-[#cac4c4] p-[10px] shadow-lg rounded-md;
   }
 
   .CreatePostForm .Field {
@@ -14,7 +14,6 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-
 }
 
 .post-form-container > * {
@@ -34,8 +33,6 @@
   text-align: center;
   display: block;
   margin-top: 1px;
-
-  
 }
 
 .image-label {
@@ -61,3 +58,39 @@
   font-size: 24px;
   margin-right: 8px;
 }
+
+
+
+.time-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.time-inputs {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+}
+
+.Field #minutes {
+  width: 30px; /* Ajusta el tamaño de cada input */
+  text-align: center;
+}
+
+.Field #seconds {
+  width: 30px; /* Ajusta el tamaño de cada input */
+  text-align: center;
+}
+
+.time-separator {
+  padding: 0 2px;
+  color: #ffffff;
+  font-size: 18px;
+}
+
+
+

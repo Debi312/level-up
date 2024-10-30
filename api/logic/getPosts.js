@@ -21,7 +21,7 @@ const getPosts = (userId) => {
                 .lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(posts => {
-                    if (posts.length === 0) throw new NotFoundError("there are no posts yet")
+                    //if (posts.length === 0) throw new NotFoundError("there are no posts yet")
                     posts.forEach(post => {
                         post.id = post._id.toString()
 

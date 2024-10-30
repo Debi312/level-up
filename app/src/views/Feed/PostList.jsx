@@ -39,10 +39,18 @@ export default function PostList() {
     }
 
 
-    return <div className="PostList">
-        <div className="PostList-container">
-            {posts.map(post => <Post key={post.id} post={post} onPostLikeToggled={handlePostLikeToggled} />)}
+    return (
+        <div className="PostList">
+            <div className="PostList-container">
+                {posts.length > 0 ? (
+
+                    posts.map(post => <Post key={post.id} post={post} onPostLikeToggled={handlePostLikeToggled} />)
+                ) : (
+
+                    <p className="no-post-message">There are no posts yet :( </p>
+                )}
+            </div>
         </div>
-    </div>
+    )
 
 }

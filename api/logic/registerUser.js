@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs"
 
 const registerUser = (name, surname, email, username, password, passwordRepeat) => {
     validate.name(name)
-    validate.name(surname, "surname")
+    validate.surname(surname)
     validate.email(email)
     validate.username(username)
     validate.password(password)

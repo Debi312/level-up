@@ -11,6 +11,56 @@ export default function CreatePostForm({ workoutId, onPostCreated }) {
     const { alert } = useContext()
 
     const [imageName, setImageName] = useState("")
+    const [seconds, setSeconds] = useState("")
+    const [minutes, setMinutes] = useState("")
+
+
+    const handleSecondsChange = (event) => {
+        let value = event.target.value
+
+        if (/^\d{0,2}$/.test(value)) {
+            setSeconds(value <= 59 ? value : "59")
+        }
+    }
+
+    const handleMinutesChange = (event) => {
+        let value = event.target.value
+
+        if (/^\d{0,2}$/.test(value)) {
+            setMinutes(value)
+        }
+    }
+
+    const handleBlur = (type) => {
+        if (type === "seconds") {
+            if (seconds.length === 1) {
+                setSeconds(`0${seconds}`)
+            }
+            if (seconds === "") {
+                setSeconds("00")
+            }
+            if (minutes === "") {
+                setMinutes("00")
+            }
+        }
+        if (type === "minutes") {
+            if (minutes.length === 1) {
+                setMinutes(`0${minutes}`)
+            }
+            if (minutes === "") {
+                setMinutes("00")
+            }
+            if (seconds === "") {
+                setSeconds("00")
+            }
+        }
+
+        if ((minutes === "00" && seconds === "00") || (!minutes && seconds === "00") || (!seconds && minutes === "00")) {
+            setMinutes("")
+            setSeconds("")
+        }
+    }
+
 
     const handleCreatePostSubmit = (event) => {
 
@@ -19,25 +69,32 @@ export default function CreatePostForm({ workoutId, onPostCreated }) {
         const form = event.target
         const formData = new FormData()
 
-        formData.append('image', form.image.files[0])
-        formData.append('description', form.description.value)
-        formData.append('time', form.time.value && Number(form.time.value))
-        formData.append('repetitions', form.repetitions.value && Number(form.repetitions.value))
-        formData.append('weight', form.weight.value && Number(form.weight.value))
-        formData.append('workoutId', workoutId)
-        console.log("FormData contents:", Array.from(formData.entries()));
+        // const minutes = form.minutes.value && Number(form.minutes.value)
+        //const seconds = form.seconds.value && Number(form.seconds.value)
+        const minutesValue = form.minutes.value
+        const secondsValue = form.seconds.value
+        const minutes = minutesValue ? Number(minutesValue) : ""
+        const seconds = secondsValue ? Number(secondsValue) : ""
 
-        /* const image = formData.get('image') // Obtén el archivo
-        const description = formData.get('description')
-        const time = formData.get('time') && Number(formData.get('time'))
-        const repetitions = formData.get('repetitions') && Number(formData.get('repetitions'))
-        const weight = formData.get('weight') && Number(formData.get('weight')) */
+        let totalTime
+        if (minutes === "" && seconds === "") {
+            totalTime = ""
+        } else if (minutes === "") {
+            totalTime = Number(seconds)
+        } else if (seconds === "") {
+            totalTime = Number(minutes) * 60
+        } else {
+            totalTime = (Number(minutes) * 60) + Number(seconds)
+        }
 
-        /*  const image = form.image.value
-         const description = form.description.value
-         const time = form.time.value && Number(form.time.value)
-         const repetitions = form.repetitions.value && Number(form.repetitions.value)
-         const weight = form.weight.value && Number(form.weight.value) */
+        formData.append("image", form.image.files[0])
+        formData.append("description", form.description.value)
+
+        formData.append("time", totalTime)
+        formData.append("repetitions", form.repetitions.value && Number(form.repetitions.value))
+        formData.append("weight", form.weight.value && Number(form.weight.value))
+        formData.append("workoutId", workoutId)
+        console.log("FormData contents:", Array.from(formData.entries()))
 
         try {
 
@@ -69,10 +126,37 @@ export default function CreatePostForm({ workoutId, onPostCreated }) {
                     type="file"
                     name="image"
                     onChange={handleFileChange}
-                    style={{ display: 'none' }} // Oculta el input por defecto
+                    style={{ display: "none" }}
                 />
                 <Field id="description" type="text" placeholder="Description"></Field>
-                <Field id="time" type="number" placeholder="Time"></Field>
+
+                <div className="time-container">
+                    <div className="time-inputs">
+                        <Field
+                            className="time-field"
+                            id="minutes"
+                            type="text"
+                            placeholder="Min"
+                            value={minutes}
+                            onChange={handleMinutesChange}
+                            onBlur={() => handleBlur("minutes")}
+                            maxLength="2"
+                        />
+                        <span className="time-separator">:</span>
+                        <Field
+                            className="time-field"
+                            id="seconds"
+                            type="text"
+                            placeholder="Sec"
+                            value={seconds}
+                            onChange={handleSecondsChange}
+                            onBlur={() => handleBlur("seconds")}
+                            maxLength="2"
+                        />
+                    </div>
+                    <label className="time-label">Total time</label>
+                </div>
+
                 <Field id="repetitions" type="number" placeholder="Total repetitions"></Field>
                 <Field id="weight" type="number" placeholder="Weight"></Field>
 

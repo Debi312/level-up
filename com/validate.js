@@ -2,6 +2,8 @@ import { ContentError, MatchError } from "./errors.js"
 
 const NAME_REGEX = /^[a-zA-Z=\[\]\{\}\<\>\(\)]{1,}$/
 const USERNAME_REGEX = /^[\w-]+$/
+const SURNAME_REGEX = /^[\p{L}\s'-]+$/u;
+
 const PASSWORD_REGEX = /^[\w-$%&=\[\]\{\}\<\>\(\)]{4,}$/
 const ID_REGEX = /^[0-9a-z]+$/
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -10,6 +12,12 @@ const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+")
 function validateName(name, explain = "name") {
     if (typeof name !== "string" || !NAME_REGEX.test(name))
         throw new ContentError(`${explain} is not valid`)
+}
+
+function validateSurname(surname) {
+    if (typeof surname !== "string" || !SURNAME_REGEX.test(surname))
+        throw new ContentError("surname is not valid")
+    
 }
 
 function validateUsername(username, explain = "username") {
@@ -75,6 +83,7 @@ function validateTime(number, explain = "time") {
 const validate = {
     name: validateName,
     username: validateUsername,
+    surname: validateSurname,
     password: validatePassword,
     callback: validateCallback,
     passwordsMatch: validatePasswordsMatch,

@@ -42,7 +42,11 @@ export default function Login() {
 
     return <>
         <form className="loginForm" onSubmit={handleLoginSubmit} >
-            <h1 className="app-title">LEVEL UP</h1>
+            <img
+                className="logo"
+                src="/images/LOGO.png"
+                alt="Level Up Logo"
+                width={200} />
             <h4>WELLCOME BACK!</h4>
             <p>Be part of our team</p>
 

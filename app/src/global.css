@@ -6,8 +6,9 @@
     --first-color: rgb(0, 0, 0);
     --second-color: rgb(240, 237, 237);
     --third-color: rgb(136, 128, 136);
-    --fourth-color: rgb(223, 53, 79);
-    --fourth-clor: rgb(193, 65, 97);
+    --fourth-color: rgb(255, 109, 77);
+    --fourth-clor: #f1eded;
+
   }
 
   * {
@@ -74,4 +75,9 @@
   .loginForm Button {
     @apply  bg-[--third-color] text-white rounded-md px-4 py-2 transition-colors duration-300 ease-in-out;
   }
+
+  .logo {
+    @apply mb-9 ;
+  }
+  
 }

@@ -2,9 +2,8 @@
 
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+
+ <img src="app/public/images/LOGO.png" alt="Logo"  height="100">
 
   <h1 align="center">LEVEL UP</h1>
   <p align="center">
@@ -73,7 +72,6 @@ For more examples, please go to the [Use Cases](https://github.com/Debi312/level
 - **Frontend**: Deployed on [Netlify](https://www.netlify.com) for fast and reliable static site hosting.
 - **Database**: Managed with [MongoDB Atlas](https://www.mongodb.com/atlas) for a scalable and secure database solution.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ## Installation
 
